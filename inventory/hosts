@@ -1,0 +1,46 @@
+localhost ansible_connection=local
+
+[edgerouter]
+edgerouter01 ansible_host=192.168.178.135
+
+[proxmox]
+pve01 ansible_host=192.168.178.100
+# pve02 ansible_host=192.168.178.101
+pve03 ansible_host=192.168.1.137
+
+[home_assistant]
+home-assistant-01 ansible_host=192.168.178.149
+
+[ansible_controller]
+controller-01 ansible_host=192.168.178.150
+
+[kubernetes_master]
+k3s-01 ansible_host=192.168.178.110
+
+[kubernetes_node]
+k3s-02 ansible_host=192.168.178.111
+k3s-03 ansible_host=192.168.178.112
+
+[kubernetes:children]
+kubernetes_master
+kubernetes_node
+
+[nfs]
+nfs-01 ansible_host=192.168.178.114
+
+[rundeck]
+rundeck-01 ansible_host=192.168.178.148
+
+[kasm]
+kasm-01 ansible_host=192.168.1.138
+
+[semaphore]
+semaphore-01 ansible_host=192.168.1.139
+
+[internal]
+pve03
+kasm-01
+semaphore-01
+
+[internal:vars]
+ansible_ssh_common_args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand="ssh -W %h:%p -q ubnt@192.168.178.135"'

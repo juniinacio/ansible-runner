@@ -1,0 +1,3 @@
+ansible_user: ansible
+ansible_setup_user: root
+# ansible_user_password: 

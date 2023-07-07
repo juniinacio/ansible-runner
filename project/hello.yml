@@ -1,0 +1,17 @@
+---
+- name: Hello
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: Debug
+      ansible.builtin.debug:
+        msg: hello
+
+    - name: Print ansible version
+      ansible.builtin.debug:
+        msg: "Ansible version is  {{ ansible_version.full }}"
+
+    - name: Print playbook location
+      ansible.builtin.debug:
+        var: playbook_dir
