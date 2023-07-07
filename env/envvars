@@ -1,0 +1,2 @@
+---
+ANSIBLE_INVENTORY: /runner/inventory/hosts
